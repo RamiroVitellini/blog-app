@@ -11,9 +11,9 @@ export default async function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block text-center justify-center">
-        <h1>Nuestros blogs</h1>
+        <h1>Lugares Turísticos</h1>
         <div>
-          <p>Nombre:</p>{session?.user?.name}
+          <p>Usuario:</p>{session?.user?.name}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
             {blogs.map(blog => (

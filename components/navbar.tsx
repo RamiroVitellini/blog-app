@@ -14,6 +14,7 @@ import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import Image from "next/image"; // 👈 Importante para el logo
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -23,7 +24,7 @@ import {
   DiscordIcon,
   HeartFilledIcon,
   SearchIcon,
-  Logo,
+  // Logo, // 👈 Ya no se usa el Logo viejo
 } from "@/components/icons";
 
 export const Navbar = () => {
@@ -52,9 +53,17 @@ export const Navbar = () => {
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+          <NextLink className="flex justify-start items-center gap-2" href="/">
+            {/* LOGO NUEVO */}
+            <Image
+              src="/logo.png"
+              alt="Logo Ramiro Vitellini"
+              width={40}
+              height={40}
+              className="rounded-xl shadow-lg"
+              priority
+            />
+            <span className="font-bold text-lg text-[#2196f3] tracking-tight">Ramiro Vitellini</span>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -86,9 +95,13 @@ export const Navbar = () => {
           <Link isExternal aria-label="Discord" href={siteConfig.links.discord}>
             <DiscordIcon className="text-default-500" />
           </Link>
-          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-default-500" />
-          </Link>
+          <Link
+  isExternal
+  aria-label="Github personal"
+  href="https://github.com/RamiroVitellini"
+>
+  <GithubIcon className="text-default-500" />
+</Link>
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
