@@ -9,11 +9,11 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Docs",
+      label: "Information",   // <-- cambiado!
       href: "/docs",
     },
     {
-      label: "Pricing",
+      label: "Travel Costs",  // <-- cambiado!
       href: "/pricing",
     },
     {
@@ -67,3 +67,4 @@ export const siteConfig = {
     sponsor: "https://patreon.com/jrgarciadev",
   },
 };
+
