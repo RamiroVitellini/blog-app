@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { getAllBlog } from "@/components/blog/actions/blog-action";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import Image from "next/image";
+import Link from "next/link"; // 👈 Asegurate de importar esto
 
 export default async function Home() {
   const blogs = await getAllBlog();
@@ -47,6 +48,26 @@ export default async function Home() {
             </CardBody>
           </Card>
         ))}
+
+        {/* CARD "Agrega tu experiencia" */}
+        <Link
+          href="/blog"
+          className="flex flex-col items-center justify-center h-full rounded-3xl overflow-hidden shadow-2xl bg-white/70 backdrop-blur-lg transition-all hover:scale-[1.025] hover:shadow-3xl min-h-[288px] p-6"
+        >
+          <div className="flex flex-col items-center justify-center flex-1">
+            {/* Ícono SVG grande */}
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="40" fill="#2196f3" fillOpacity="0.15"/>
+              <path d="M40 45a12 12 0 100-24 12 12 0 000 24z" fill="#2196f3"/>
+              <path d="M56 58c0-8-8-12-16-12s-16 4-16 12" stroke="#2196f3" strokeWidth="2"/>
+              <circle cx="59" cy="59" r="10" fill="#fff"/>
+              <path d="M59 54v10M54 59h10" stroke="#2196f3" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <span className="font-bold text-blue-600 text-lg mt-4 text-center">
+              Agrega tu experiencia
+            </span>
+          </div>
+        </Link>
       </div>
     </section>
   );
