@@ -1,3 +1,4 @@
+"use client"; // 👈 IMPORTANTE: ponelo arriba de todo
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -16,6 +17,8 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
 
+import { useSession, signIn, signOut } from "next-auth/react"; // 👈 IMPORTANTE
+
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
@@ -27,6 +30,8 @@ import {
 } from "@/components/icons";
 
 export const Navbar = () => {
+  const { data: session } = useSession(); // 👈 Hook de NextAuth
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -106,14 +111,23 @@ export const Navbar = () => {
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
         <NavbarItem className="hidden md:flex">
-          <Button
-            as={Link}
-            className="text-sm font-normal text-default-600 bg-default-100"
-            href={'/login'}
-            variant="flat"
-          >
-            Ingresar
-          </Button>
+          {!session ? (
+            <Button
+              className="text-sm font-normal text-default-600 bg-default-100"
+              onClick={() => signIn("google")}
+              variant="flat"
+            >
+              Ingresar
+            </Button>
+          ) : (
+            <Button
+              className="text-sm font-normal text-default-600 bg-default-100"
+              onClick={() => signOut()}
+              variant="flat"
+            >
+              Cerrar sesión
+            </Button>
+          )}
         </NavbarItem>
       </NavbarContent>
 
